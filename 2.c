@@ -70,7 +70,7 @@ void work(char *Folder)
         off_t file_size;//文件大小，一般是long类型
     };
 
-    struct WenJianMessage *entries = malloc(sizeof(struct WenJianMessage) * 1024);
+    struct WenJianMessage *entries = (struct WenJianMessage *)malloc(sizeof(struct WenJianMessage) * 1024);
     if (entries == NULL) {
         perror("malloc");
         closedir(dir);
@@ -90,7 +90,7 @@ void work(char *Folder)
         // 如果当前数量达到最大容量，扩容2倍
         if (jishuqi >= max_entries)
         {
-            struct WenJianMessage *new_entries = realloc(entries, sizeof(struct WenJianMessage) * max_entries * 2);
+            struct WenJianMessage *new_entries = (struct WenJianMessage *)realloc(entries, sizeof(struct WenJianMessage) * max_entries * 2);
             if (new_entries == NULL)
             {
                 perror("realloc");
